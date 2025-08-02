@@ -1,4 +1,56 @@
-baseURL: "http://hugo-quickstart-template.netlify.com"
+baseURL: "https://miroir-blog.netlify.app/"  # ← Change this to your actual domain or Netlify URL
 languageCode: "en-us"
-title: "Netlify + Hugo Quickstart"
-theme: "netlify-basic"
+title: "Miroir Blog"
+theme: "PaperMod"
+
+paginate: 10
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+params:
+  env: production
+  description: "A blog of reflections, truth, and authentic thoughts."
+  author: "Fils Jean Pierre"
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShowCodeCopyButtons: true
+  ShowToc: true
+  TocOpen: false
+  defaultTheme: auto
+  disableThemeToggle: false
+
+menu:
+  main:
+    - identifier: about
+      name: About
+      url: /about/
+      weight: 1
+    - identifier: posts
+      name: Blog
+      url: /posts/
+      weight: 2
+
+params:
+  socialIcons:
+    - name: github
+      url: "https://github.com/mutsinzifjp"
+    - name: Instagram
+     url: "https://www.instagram.com/fils_brandy/"
+      - name: LinkedIn
+     url: "https://www.linkedin.com/in/fils-jean-pierre-mutsinzi/"
+    - name: X (twitter)
+      url: "https://x.com/Mutsinzifjp2"
+    - name: email
+      url: "mailto:mutsinzifjp@gmail.com"
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+markup:
+  highlight:
+    noClasses: false
