@@ -3,7 +3,8 @@ languageCode: "en-us"
 title: "Miroir Blog"
 theme: "PaperMod"
 
-paginate: 10
+pagination:
+  pagerSize: 10
 enableRobotsTXT: true
 buildDrafts: false
 buildFuture: false
@@ -20,6 +21,17 @@ params:
   TocOpen: false
   defaultTheme: auto
   disableThemeToggle: false
+  socialIcons:
+    - name: github
+      url: "https://github.com/mutsinzifjp"
+    - name: Instagram
+      url: "https://www.instagram.com/fils_brandy/"
+    - name: LinkedIn
+      url: "https://www.linkedin.com/in/fils-jean-pierre-mutsinzi/"
+    - name: X (twitter)
+      url: "https://x.com/Mutsinzifjp2"
+    - name: email
+      url: "mailto:mutsinzifjp@gmail.com"
 
 menu:
   main:
@@ -31,19 +43,6 @@ menu:
       name: Blog
       url: /posts/
       weight: 2
-
-params:
-  socialIcons:
-    - name: github
-      url: "https://github.com/mutsinzifjp"
-    - name: Instagram
-     url: "https://www.instagram.com/fils_brandy/"
-      - name: LinkedIn
-     url: "https://www.linkedin.com/in/fils-jean-pierre-mutsinzi/"
-    - name: X (twitter)
-      url: "https://x.com/Mutsinzifjp2"
-    - name: email
-      url: "mailto:mutsinzifjp@gmail.com"
 
 outputs:
   home:
