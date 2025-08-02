@@ -1,7 +1,7 @@
 baseURL: "https://miroir-blog.netlify.app/"  # ← Change this to your actual domain or Netlify URL
 languageCode: "en-us"
 title: "Miroir Blog"
-theme: "PaperMod"
+theme: "netlify-basic"
 
 pagination:
   pagerSize: 10
