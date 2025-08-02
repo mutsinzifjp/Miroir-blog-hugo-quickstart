@@ -2,9 +2,58 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Content Manager</title>
-    <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Miroir Blog - Content Manager</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   </head>
   <body>
+    <!-- Include the script that builds the page and powers Decap CMS -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    
+    <style>
+      :root {
+        --primary-color: #1976d2;
+        --secondary-color: #dc004e;
+      }
+      
+      /* Custom Admin Panel Styling */
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      
+      .nc-collectionPage-card {
+        border-radius: 12px !important;
+        transition: all 0.3s ease !important;
+        border: 1px solid #e9ecef !important;
+      }
+      
+      .nc-collectionPage-card:hover {
+        transform: translateY(-4px) !important;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1) !important;
+      }
+      
+      .nc-entryListing-card {
+        border-radius: 8px !important;
+        border: 1px solid #e9ecef !important;
+        transition: all 0.3s ease !important;
+      }
+      
+      .nc-entryListing-card:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+      }
+      
+      .nc-button-primary {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important;
+        border: none !important;
+        border-radius: 8px !important;
+        transition: all 0.3s ease !important;
+      }
+      
+      .nc-button-primary:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+      }
+    </style>
   </body>
 </html>
