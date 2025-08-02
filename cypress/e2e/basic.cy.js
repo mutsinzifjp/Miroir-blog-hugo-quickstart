@@ -1,16 +1,19 @@
-describe('empty spec', () => {
+describe('Miroir Blog site', () => {
   beforeEach(() => {
     cy.visit('/')
   })
-  it('displays the resources text', () => {
-    cy.get('h2')
-    .contains('This is a bare-bones Hugo project that has everything you need to quickly deploy it to Netlify');
+  it('displays the site title', () => {
+    cy.get('title')
+      .should('contain', 'Miroir Blog');
+    cy.get('header')
+      .contains('Miroir Blog');
   })
-  it('renders the image', () => {
-    cy.get('img')
-    .should('be.visible')
-    .and(($img) => {
-      expect($img[0].naturalWidth).to.be.greaterThan(0);
-    })
+  it('displays navigation menu', () => {
+    cy.get('nav')
+      .should('be.visible')
+      .within(() => {
+        cy.contains('About');
+        cy.contains('Blog');
+      });
   })
 })
