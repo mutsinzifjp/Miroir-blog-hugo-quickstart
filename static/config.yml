@@ -50,7 +50,7 @@ collections:
         name: "body"
         widget: "markdown"
         required: true
-        buttons: ["bold", "italic", "code", "link", "heading-two", "heading-three", "heading-four", "heading-five", "heading-six", "quote", "code-block", "bulleted-list", "numbered-list"]
+        buttons: ["bold", "italic", "code", "link", "heading-two", "heading-three", "quote", "code-block", "bulleted-list", "numbered-list"]
 
   # Video Posts Collection
   - name: "videos"
@@ -136,7 +136,7 @@ collections:
         name: "body"
         widget: "markdown"
         required: true
-        buttons: ["bold", "italic", "code", "link", "heading-one", "heading-two", "heading-three", "heading-four", "heading-five", "heading-six", "quote", "code-block", "bulleted-list", "numbered-list"]
+        buttons: ["bold", "italic", "code", "link", "heading-one", "heading-two", "heading-three", "quote", "code-block", "bulleted-list", "numbered-list"]
 
   # Pages Collection (for about, etc.)
   - name: "pages"
