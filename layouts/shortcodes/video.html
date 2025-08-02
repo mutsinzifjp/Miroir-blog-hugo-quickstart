@@ -1,0 +1,129 @@
+<!-- Video embed shortcode with platform support -->
+{{ $url := .Get "url" }}
+{{ $platform := .Get "platform" | default "youtube" }}
+{{ $autoplay := .Get "autoplay" | default false }}
+{{ $controls := .Get "controls" | default true }}
+{{ $loop := .Get "loop" | default false }}
+{{ $title := .Get "title" | default "Video" }}
+
+{{ $videoId := "" }}
+{{ $embedUrl := "" }}
+
+{{ if eq $platform "youtube" }}
+  {{ if findRE "youtube\\.com/watch\\?v=([^&]+)" $url }}
+    {{ $videoId = index (findRE "v=([^&]+)" $url) 0 | replaceRE "v=" "" }}
+  {{ else if findRE "youtu\\.be/([^?]+)" $url }}
+    {{ $videoId = index (findRE "youtu\\.be/([^?]+)" $url) 0 | replaceRE "youtu\\.be/" "" }}
+  {{ end }}
+  {{ $embedUrl = printf "https://www.youtube.com/embed/%s?rel=0" $videoId }}
+{{ else if eq $platform "vimeo" }}
+  {{ $videoId = index (findRE "vimeo\\.com/([0-9]+)" $url) 0 | replaceRE "vimeo\\.com/" "" }}
+  {{ $embedUrl = printf "https://player.vimeo.com/video/%s" $videoId }}
+{{ else if eq $platform "twitch" }}
+  {{ $videoId = index (findRE "twitch\\.tv/videos/([0-9]+)" $url) 0 | replaceRE "twitch\\.tv/videos/" "" }}
+  {{ $embedUrl = printf "https://player.twitch.tv/?video=%s&parent=%s" $videoId .Site.BaseURL }}
+{{ else }}
+  {{ $embedUrl = $url }}
+{{ end }}
+
+{{ if $autoplay }}
+  {{ $embedUrl = printf "%s&autoplay=1" $embedUrl }}
+{{ end }}
+
+{{ if not $controls }}
+  {{ $embedUrl = printf "%s&controls=0" $embedUrl }}
+{{ end }}
+
+{{ if $loop }}
+  {{ $embedUrl = printf "%s&loop=1" $embedUrl }}
+{{ end }}
+
+<div class="video-embed animate-fade" data-platform="{{ $platform }}">
+  <div class="video-wrapper">
+    <iframe 
+      src="{{ $embedUrl }}" 
+      title="{{ $title }}"
+      frameborder="0" 
+      allowfullscreen
+      loading="lazy"
+      {{ if eq $platform "youtube" }}allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"{{ end }}
+      {{ if eq $platform "vimeo" }}allow="autoplay; fullscreen; picture-in-picture"{{ end }}
+    ></iframe>
+  </div>
+  {{ if .Inner }}
+    <div class="video-description">
+      {{ .Inner | markdownify }}
+    </div>
+  {{ end }}
+</div>
+
+<style>
+.video-embed {
+  margin: 2rem 0;
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.video-wrapper:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-description {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid var(--primary-color);
+}
+
+/* Platform-specific styling */
+.video-embed[data-platform="youtube"] .video-wrapper {
+  border-left: 4px solid #ff0000;
+}
+
+.video-embed[data-platform="vimeo"] .video-wrapper {
+  border-left: 4px solid #1ab7ea;
+}
+
+.video-embed[data-platform="twitch"] .video-wrapper {
+  border-left: 4px solid #9146ff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .video-embed {
+    margin: 1.5rem 0;
+  }
+  
+  .video-wrapper {
+    border-radius: 8px;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .video-description {
+    background: #2d2d2d;
+    color: #e0e0e0;
+  }
+}
+</style>

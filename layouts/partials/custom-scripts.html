@@ -1,0 +1,37 @@
+<!-- Custom JavaScript initialization based on design.yml settings -->
+{{ $design := .Site.Data.design }}
+{{ if $design }}
+<script>
+// Configuration from design.yml
+window.siteConfig = {
+  animations: {
+    enabled: {{ $design.animations.enabled | default true }},
+    page_transitions: {{ $design.animations.page_transitions | default true }},
+    hover_effects: {{ $design.animations.hover_effects | default true }},
+    scroll_animations: {{ $design.animations.scroll_animations | default true }},
+    loading_animations: {{ $design.animations.loading_animations | default true }},
+    speed: "{{ $design.animations.speed | default "normal" }}",
+    parallax: {{ $design.animations.parallax | default false }}
+  },
+  features: {
+    dark_mode: {{ $design.features.dark_mode | default true }},
+    reading_progress: {{ $design.features.reading_progress | default true }},
+    back_to_top: {{ $design.features.back_to_top | default true }},
+    social_sharing: {{ $design.features.social_sharing | default true }},
+    reading_time: {{ $design.features.reading_time | default true }},
+    toc: {{ $design.features.toc | default true }},
+    search: {{ $design.features.search | default true }}
+  },
+  layout: {
+    homepage: "{{ $design.layout.homepage | default "list" }}",
+    post_list: "{{ $design.layout.post_list | default "list" }}",
+    single_post: "{{ $design.layout.single_post | default "centered" }}",
+    grid_columns: "{{ $design.layout.grid_columns | default "3" }}",
+    sidebar: {{ $design.layout.sidebar | default true }}
+  }
+};
+</script>
+
+<!-- Load custom JavaScript -->
+<script src="/js/custom.js"></script>
+{{ end }}

@@ -1,0 +1,135 @@
+<!-- Custom CSS based on design.yml settings -->
+{{ $design := .Site.Data.design }}
+{{ if $design }}
+<style>
+:root {
+  /* Color variables from CMS */
+  --primary-color: {{ $design.colors.primary | default "#1976d2" }};
+  --secondary-color: {{ $design.colors.secondary | default "#dc004e" }};
+  --background-color: {{ $design.colors.background | default "#ffffff" }};
+  --text-color: {{ $design.colors.text | default "#212529" }};
+  --link-color: {{ $design.colors.link | default "#0d6efd" }};
+  --dark-primary: {{ $design.colors.dark_primary | default "#90caf9" }};
+  --dark-background: {{ $design.colors.dark_background | default "#121212" }};
+  --dark-text: {{ $design.colors.dark_text | default "#ffffff" }};
+  
+  /* Font variables */
+  --heading-font: {{ $design.fonts.heading | default "Roboto" }}, sans-serif;
+  --body-font: {{ $design.fonts.body | default "Open Sans" }}, sans-serif;
+  --mono-font: {{ $design.fonts.mono | default "Fira Code" }}, monospace;
+  
+  /* Layout variables */
+  --grid-columns: {{ $design.layout.grid_columns | default "3" }};
+  --container-width: {{ $design.layout.container_width | default "medium" }};
+  
+  /* Animation variables */
+  --animation-speed: {{ $design.animations.speed | default "normal" }};
+}
+
+/* Apply fonts */
+body {
+  font-family: var(--body-font);
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--heading-font);
+}
+
+code, pre {
+  font-family: var(--mono-font);
+}
+
+/* Apply layout classes based on settings */
+{{ if eq $design.layout.homepage "grid" }}
+.content-container {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  gap: 2rem;
+}
+{{ else if eq $design.layout.homepage "carousel" }}
+.content-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+.content-container > * {
+  flex: 0 0 300px;
+  scroll-snap-align: start;
+}
+{{ else if eq $design.layout.homepage "reel" }}
+.content-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+.content-container > * {
+  flex: 0 0 auto;
+}
+{{ end }}
+
+/* Container width */
+{{ if eq $design.layout.container_width "narrow" }}
+.container { max-width: 720px; }
+{{ else if eq $design.layout.container_width "medium" }}
+.container { max-width: 960px; }
+{{ else if eq $design.layout.container_width "wide" }}
+.container { max-width: 1200px; }
+{{ else if eq $design.layout.container_width "full" }}
+.container { max-width: 100%; }
+{{ end }}
+
+/* Animation speed */
+{{ if eq $design.animations.speed "fast" }}
+* { transition-duration: 0.2s !important; }
+{{ else if eq $design.animations.speed "slow" }}
+* { transition-duration: 0.5s !important; }
+{{ end }}
+
+/* Feature toggles */
+{{ if not $design.features.dark_mode }}
+.theme-toggle { display: none; }
+{{ end }}
+
+{{ if not $design.features.reading_progress }}
+.reading-progress { display: none; }
+{{ end }}
+
+{{ if not $design.features.back_to_top }}
+.back-to-top { display: none; }
+{{ end }}
+
+{{ if not $design.animations.enabled }}
+.animate-fade,
+.animate-slide,
+.animate-zoom { 
+  opacity: 1 !important; 
+  transform: none !important; 
+}
+{{ end }}
+
+/* Custom CSS from CMS */
+{{ if $design.theme.custom_css }}
+{{ $design.theme.custom_css | safeCSS }}
+{{ end }}
+</style>
+
+<!-- Font imports -->
+{{ if $design.fonts.custom_heading_url }}
+<link href="{{ $design.fonts.custom_heading_url }}" rel="stylesheet">
+{{ else }}
+<link href="https://fonts.googleapis.com/css2?family={{ $design.fonts.heading | default "Roboto" }}:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+{{ end }}
+
+{{ if $design.fonts.custom_body_url }}
+<link href="{{ $design.fonts.custom_body_url }}" rel="stylesheet">
+{{ else }}
+<link href="https://fonts.googleapis.com/css2?family={{ $design.fonts.body | default "Open Sans" }}:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+{{ end }}
+
+<link href="https://fonts.googleapis.com/css2?family={{ $design.fonts.mono | default "Fira Code" }}:wght@400;500;600&display=swap" rel="stylesheet">
+{{ end }}

@@ -1,0 +1,207 @@
+<!-- Layout switcher for different view modes -->
+{{ $design := .Site.Data.design }}
+{{ $currentLayout := $design.layout.homepage | default "list" }}
+
+<div class="layout-switcher">
+  <div class="layout-options">
+    <button class="layout-btn {{ if eq $currentLayout "list" }}active{{ end }}" 
+            data-layout="list" 
+            title="List View">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/>
+      </svg>
+      <span>List</span>
+    </button>
+    
+    <button class="layout-btn {{ if eq $currentLayout "grid" }}active{{ end }}" 
+            data-layout="grid" 
+            title="Grid View">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M10 18h5v-6h-5v6zm-6 0h5V6H4v12zm6-16v6h5V2h-5zm6 0v12h5V2h-5z"/>
+      </svg>
+      <span>Grid</span>
+    </button>
+    
+    <button class="layout-btn {{ if eq $currentLayout "carousel" }}active{{ end }}" 
+            data-layout="carousel" 
+            title="Carousel View">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M7 19h10V5H7v14zm2-8h6v2H9v-2zm0 4h6v2H9v-2zM9 9h6v2H9V9z"/>
+      </svg>
+      <span>Carousel</span>
+    </button>
+    
+    <button class="layout-btn {{ if eq $currentLayout "reel" }}active{{ end }}" 
+            data-layout="reel" 
+            title="Reel View">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M18 3v2h-2V3H8v2H6V3H4v18h2v-2h2v2h8v-2h2v2h2V3h-2zM8 17H6v-2h2v2zm0-4H6v-2h2v2zm0-4H6V7h2v2zm10 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2z"/>
+      </svg>
+      <span>Reel</span>
+    </button>
+    
+    <button class="layout-btn {{ if eq $currentLayout "masonry" }}active{{ end }}" 
+            data-layout="masonry" 
+            title="Masonry View">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M2 20h20v-4H2v4zm2-6h16v-4H4v4zm-2-6h20V4H2v4z"/>
+      </svg>
+      <span>Masonry</span>
+    </button>
+  </div>
+  
+  <div class="view-settings">
+    <label class="setting-item">
+      <span>Columns:</span>
+      <select class="column-selector">
+        <option value="2" {{ if eq $design.layout.grid_columns "2" }}selected{{ end }}>2</option>
+        <option value="3" {{ if eq $design.layout.grid_columns "3" }}selected{{ end }}>3</option>
+        <option value="4" {{ if eq $design.layout.grid_columns "4" }}selected{{ end }}>4</option>
+      </select>
+    </label>
+    
+    <label class="setting-item">
+      <input type="checkbox" class="animation-toggle" 
+             {{ if $design.animations.enabled }}checked{{ end }}>
+      <span>Animations</span>
+    </label>
+  </div>
+</div>
+
+<style>
+.layout-switcher {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  margin: 1rem 0;
+  gap: 1rem;
+}
+
+.layout-options {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.layout-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #dee2e6;
+  background: white;
+  color: #495057;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+}
+
+.layout-btn:hover {
+  background: #e9ecef;
+  border-color: #adb5bd;
+}
+
+.layout-btn.active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.layout-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.view-settings {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #495057;
+  cursor: pointer;
+}
+
+.column-selector {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  background: white;
+  font-size: 0.875rem;
+}
+
+.animation-toggle {
+  margin: 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .layout-switcher {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .layout-options {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .layout-btn span {
+    display: none;
+  }
+  
+  .layout-btn {
+    padding: 0.5rem;
+    min-width: 40px;
+    justify-content: center;
+  }
+  
+  .view-settings {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .view-settings {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .layout-switcher {
+    background: #2d2d2d;
+    border-color: #495057;
+  }
+  
+  .layout-btn {
+    background: #343a40;
+    color: #e0e0e0;
+    border-color: #495057;
+  }
+  
+  .layout-btn:hover {
+    background: #495057;
+  }
+  
+  .column-selector {
+    background: #343a40;
+    color: #e0e0e0;
+    border-color: #495057;
+  }
+  
+  .setting-item {
+    color: #e0e0e0;
+  }
+}
+</style>

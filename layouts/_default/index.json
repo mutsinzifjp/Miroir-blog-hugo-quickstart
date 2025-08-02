@@ -1,0 +1,14 @@
+[
+  {{- $pages := .Site.RegularPages -}}
+  {{- range $index, $page := $pages -}}
+  {
+    "title": {{ $page.Title | jsonify }},
+    "content": {{ $page.Plain | jsonify }},
+    "permalink": {{ $page.Permalink | jsonify }},
+    "date": {{ $page.Date.Format "2006-01-02" | jsonify }},
+    "tags": [{{- range $tagIndex, $tag := $page.Params.tags }}{{- if $tagIndex }}, {{ end }}{{ $tag | jsonify }}{{- end }}],
+    "categories": [{{- range $catIndex, $cat := $page.Params.categories }}{{- if $catIndex }}, {{ end }}{{ $cat | jsonify }}{{- end }}],
+    "section": {{ $page.Section | jsonify }}
+  }{{ if lt $index (sub (len $pages) 1) }},{{ end }}
+  {{- end -}}
+]
