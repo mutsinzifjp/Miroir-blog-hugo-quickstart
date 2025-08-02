@@ -41,7 +41,7 @@ menu:
       weight: 1
     - identifier: blog
       name: Blog
-      url: /blog/
+      url: /posts/
       weight: 2
 
 outputs:
