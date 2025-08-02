@@ -2,9 +2,45 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Content Manager</title>
-    <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Content Manager - Miroir Blog</title>
   </head>
   <body>
+    <div id="nc-root">
+      <h1>Netlify CMS Admin Panel</h1>
+      <p>Loading Netlify CMS...</p>
+      <p>If this page doesn't load properly, it may be due to browser restrictions in the development environment.</p>
+      <p>On Netlify deployment, this will work correctly with the git-gateway backend.</p>
+      
+      <h2>Available Content Types:</h2>
+      <ul>
+        <li><strong>Blog Posts</strong> - Advanced posts with layouts, media, and rich formatting</li>
+        <li><strong>Video Posts</strong> - Video content with thumbnails and metadata</li>
+        <li><strong>Newsletters</strong> - Longform newsletter content</li>
+        <li><strong>Pages</strong> - Static pages like About</li>
+      </ul>
+      
+      <h2>Features Configured:</h2>
+      <ul>
+        <li>Layout selection (standard, grid, carousel, reel)</li>
+        <li>Media uploads for images and videos</li>
+        <li>Rich markdown editor with advanced formatting</li>
+        <li>Tags and categories management</li>
+        <li>Draft/publish workflow</li>
+        <li>Featured content marking</li>
+      </ul>
+    </div>
+    
+    <!-- Include the script that builds the page and powers Netlify CMS -->
+    <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
+    
+    <script>
+      // Fallback in case CMS doesn't load
+      setTimeout(function() {
+        if (!window.CMS) {
+          document.getElementById('nc-root').innerHTML += '<p style="color: red;"><strong>Note:</strong> Netlify CMS script blocked by browser. This will work in production deployment.</p>';
+        }
+      }, 3000);
+    </script>
   </body>
 </html>

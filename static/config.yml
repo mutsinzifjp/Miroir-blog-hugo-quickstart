@@ -5,31 +5,149 @@ backend:
 media_folder: "static/images/uploads"
 public_folder: "/images/uploads"
 
+# Editor configuration
+editor:
+  preview: true
+
 collections:
-  - name: "post"
+  # Blog Posts Collection with Advanced Fields
+  - name: "posts"
     label: "Blog Posts"
     folder: "content/posts"
     create: true
     slug: "{{slug}}"
+    editor:
+      preview: true
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Body", name: "body", widget: "markdown" }
-      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Title", name: "title", widget: "string", required: true }
+      - { label: "Publish Date", name: "date", widget: "datetime", required: true }
+      - { label: "Draft", name: "draft", widget: "boolean", default: true }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Summary", name: "summary", widget: "text", required: false }
+      - label: "Layout Type"
+        name: "layout"
+        widget: "select"
+        options: 
+          - { label: "Standard", value: "standard" }
+          - { label: "Grid", value: "grid" }
+          - { label: "Carousel", value: "carousel" }
+          - { label: "Reel", value: "reel" }
+        default: "standard"
+      - { label: "Featured Image", name: "image", widget: "image", required: false }
+      - { label: "Video URL", name: "video_url", widget: "string", required: false, hint: "YouTube, Vimeo, or other video URL" }
+      - { label: "Featured Post", name: "featured", widget: "boolean", default: false }
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        required: false
+        field: { label: "Tag", name: "tag", widget: "string" }
+      - label: "Categories"
+        name: "categories"
+        widget: "list"
+        required: false
+        field: { label: "Category", name: "category", widget: "string" }
+      - label: "Content"
+        name: "body"
+        widget: "markdown"
+        required: true
+        buttons: ["bold", "italic", "code", "link", "heading-two", "heading-three", "heading-four", "heading-five", "heading-six", "quote", "code-block", "bulleted-list", "numbered-list"]
+
+  # Video Posts Collection
   - name: "videos"
     label: "Video Posts"
     folder: "content/videos"
     create: true
     slug: "{{slug}}"
+    editor:
+      preview: true
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Video URL", name: "video_url", widget: "string" }
-      - { label: "Description", name: "body", widget: "markdown" }
+      - { label: "Title", name: "title", widget: "string", required: true }
+      - { label: "Publish Date", name: "date", widget: "datetime", required: true }
+      - { label: "Draft", name: "draft", widget: "boolean", default: true }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - label: "Video Type"
+        name: "video_type"
+        widget: "select"
+        options:
+          - { label: "YouTube", value: "youtube" }
+          - { label: "Vimeo", value: "vimeo" }
+          - { label: "Upload", value: "upload" }
+          - { label: "Other", value: "other" }
+        default: "youtube"
+      - { label: "Video URL", name: "video_url", widget: "string", required: false, hint: "External video URL (YouTube, Vimeo, etc.)" }
+      - { label: "Video File", name: "video_file", widget: "file", required: false, hint: "Upload video file directly" }
+      - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false }
+      - { label: "Duration", name: "duration", widget: "string", required: false, hint: "e.g., 5:30" }
+      - { label: "Featured Video", name: "featured", widget: "boolean", default: false }
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        required: false
+        field: { label: "Tag", name: "tag", widget: "string" }
+      - label: "Categories"
+        name: "categories"
+        widget: "list"
+        required: false
+        field: { label: "Category", name: "category", widget: "string" }
+        default: ["video"]
+      - label: "Content"
+        name: "body"
+        widget: "markdown"
+        required: true
+        buttons: ["bold", "italic", "code", "link", "heading-two", "heading-three", "quote", "code-block", "bulleted-list", "numbered-list"]
+
+  # Newsletters Collection with Advanced Features
   - name: "newsletters"
     label: "Newsletters"
     folder: "content/newsletters"
     create: true
     slug: "{{slug}}"
+    editor:
+      preview: true
     fields:
-      - { label: "Subject", name: "title", widget: "string" }
-      - { label: "Content", name: "body", widget: "markdown" }
+      - { label: "Subject", name: "title", widget: "string", required: true }
+      - { label: "Newsletter Subject", name: "subject", widget: "string", required: false, hint: "Email subject line (if different from title)" }
+      - { label: "Publish Date", name: "date", widget: "datetime", required: true }
+      - { label: "Draft", name: "draft", widget: "boolean", default: true }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Summary", name: "summary", widget: "text", required: false }
+      - label: "Newsletter Type"
+        name: "newsletter_type"
+        widget: "select"
+        options:
+          - { label: "Standard", value: "standard" }
+          - { label: "Featured", value: "featured" }
+          - { label: "Special Edition", value: "special" }
+        default: "standard"
+      - { label: "Featured Image", name: "featured_image", widget: "image", required: false }
+      - { label: "Featured Newsletter", name: "featured", widget: "boolean", default: false }
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        required: false
+        field: { label: "Tag", name: "tag", widget: "string" }
+      - label: "Categories"
+        name: "categories"
+        widget: "list"
+        required: false
+        field: { label: "Category", name: "category", widget: "string" }
+        default: ["newsletter"]
+      - label: "Content"
+        name: "body"
+        widget: "markdown"
+        required: true
+        buttons: ["bold", "italic", "code", "link", "heading-one", "heading-two", "heading-three", "heading-four", "heading-five", "heading-six", "quote", "code-block", "bulleted-list", "numbered-list"]
+
+  # Pages Collection (for about, etc.)
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "About Page"
+        name: "about"
+        file: "content/about.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Date", name: "date", widget: "datetime" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Description", name: "description", widget: "text", required: false }
+          - { label: "Content", name: "body", widget: "markdown" }
