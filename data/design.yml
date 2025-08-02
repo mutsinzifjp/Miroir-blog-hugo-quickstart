@@ -1,0 +1,49 @@
+theme:
+  current: PaperMod
+  custom_css: ""
+  custom_name: ""
+
+colors:
+  primary: "#1976d2"
+  secondary: "#dc004e"
+  background: "#ffffff"
+  text: "#212529"
+  link: "#0d6efd"
+  dark_primary: "#90caf9"
+  dark_background: "#121212"
+  dark_text: "#ffffff"
+
+fonts:
+  heading: "Roboto"
+  body: "Open Sans"
+  mono: "Fira Code"
+  custom_heading_url: ""
+  custom_body_url: ""
+  scale: "medium"
+
+layout:
+  homepage: "list"
+  post_list: "list"
+  single_post: "centered"
+  grid_columns: "3"
+  sidebar: true
+  container_width: "medium"
+
+animations:
+  enabled: true
+  page_transitions: true
+  hover_effects: true
+  scroll_animations: true
+  loading_animations: true
+  speed: "normal"
+  parallax: false
+
+features:
+  dark_mode: true
+  reading_progress: true
+  back_to_top: true
+  social_sharing: true
+  reading_time: true
+  toc: true
+  search: true
+  comments: "none"

@@ -1,10 +1,31 @@
 ---
 title: "Building with Hugo and Netlify"
+subtitle: "A comprehensive guide to modern static site generation"
+description: "A comprehensive guide on setting up a blog with Hugo static site generator and deploying it to Netlify for optimal performance and ease of use."
 date: 2025-01-02T10:00:00Z
+lastmod: 2025-01-02T10:00:00Z
 draft: false
-summary: "A quick guide on setting up a blog with Hugo static site generator and deploying it to Netlify."
-tags: ["hugo", "netlify", "web-development"]
-categories: ["technical"]
+featured: false
+author: "Fils Jean Pierre"
+authors: ["Fils Jean Pierre"]
+categories: ["technical", "tutorial"]
+tags: ["hugo", "netlify", "web-development", "static-site", "deployment", "tutorial"]
+image: ""
+image_caption: ""
+image_alt: "Hugo and Netlify development workflow"
+seo:
+  title: "Building with Hugo and Netlify - Complete Tutorial"
+  description: "Learn how to build fast, modern websites using Hugo static site generator and deploy them seamlessly with Netlify."
+  keywords: ["hugo", "netlify", "static site generator", "web development", "deployment"]
+social:
+  twitter_card: "summary_large_image"
+settings:
+  toc: true
+  reading_time: true
+  social_sharing: true
+  comments: true
+  layout: "default"
+  animation: "fade"
 ---
 
 # Building with Hugo and Netlify

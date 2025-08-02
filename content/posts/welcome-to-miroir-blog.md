@@ -1,10 +1,31 @@
 ---
 title: "Welcome to Miroir Blog"
+subtitle: "A space for reflections, truth, and authentic thoughts"
+description: "Welcome to Miroir Blog - a space for reflections, truth, and authentic thoughts where I share personal insights, technical knowledge, and authentic stories."
 date: 2025-01-01T12:00:00Z
+lastmod: 2025-01-01T12:00:00Z
 draft: false
-summary: "Welcome to Miroir Blog - a space for reflections, truth, and authentic thoughts."
-tags: ["welcome", "introduction"]
-categories: ["blog"]
+featured: true
+author: "Fils Jean Pierre"
+authors: ["Fils Jean Pierre"]
+categories: ["blog", "introduction"]
+tags: ["welcome", "introduction", "about", "personal"]
+image: ""
+image_caption: ""
+image_alt: "Welcome to Miroir Blog"
+seo:
+  title: "Welcome to Miroir Blog - Reflections and Authentic Thoughts"
+  description: "Discover Miroir Blog, a space dedicated to personal reflections, technical insights, and authentic storytelling by Fils Jean Pierre."
+  keywords: ["blog", "reflections", "authentic thoughts", "personal development"]
+social:
+  twitter_card: "summary_large_image"
+settings:
+  toc: true
+  reading_time: true
+  social_sharing: true
+  comments: true
+  layout: "default"
+  animation: "fade"
 ---
 
 # Welcome to Miroir Blog

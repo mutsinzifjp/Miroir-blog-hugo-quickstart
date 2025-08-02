@@ -1,0 +1,280 @@
+/* Custom Design System CSS - Managed by Netlify CMS */
+
+:root {
+  /* Colors from design.yml */
+  --primary-color: #1976d2;
+  --secondary-color: #dc004e;
+  --background-color: #ffffff;
+  --text-color: #212529;
+  --link-color: #0d6efd;
+  --dark-primary: #90caf9;
+  --dark-background: #121212;
+  --dark-text: #ffffff;
+  
+  /* Fonts */
+  --heading-font: 'Roboto', sans-serif;
+  --body-font: 'Open Sans', sans-serif;
+  --mono-font: 'Fira Code', monospace;
+  
+  /* Animation speeds */
+  --animation-fast: 0.2s;
+  --animation-normal: 0.3s;
+  --animation-slow: 0.5s;
+  
+  /* Layout */
+  --container-narrow: 720px;
+  --container-medium: 960px;
+  --container-wide: 1200px;
+  --container-full: 100%;
+  
+  /* Shadows */
+  --shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Custom theme overrides */
+.theme-custom {
+  --primary: var(--primary-color);
+  --secondary: var(--secondary-color);
+  --background: var(--background-color);
+  --text: var(--text-color);
+}
+
+/* Animation classes */
+.animate-fade {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all var(--animation-normal) ease;
+}
+
+.animate-fade.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate-slide {
+  transform: translateX(-100%);
+  transition: transform var(--animation-normal) ease;
+}
+
+.animate-slide.visible {
+  transform: translateX(0);
+}
+
+.animate-zoom {
+  transform: scale(0.8);
+  opacity: 0;
+  transition: all var(--animation-normal) ease;
+}
+
+.animate-zoom.visible {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Layout classes */
+.layout-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.layout-grid.cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.layout-grid.cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.layout-grid.cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.layout-carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.layout-carousel > * {
+  flex: 0 0 300px;
+  scroll-snap-align: start;
+}
+
+.layout-reel {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.layout-reel > * {
+  flex: 0 0 auto;
+}
+
+.layout-masonry {
+  column-count: 3;
+  column-gap: 2rem;
+  column-fill: balance;
+}
+
+.layout-masonry > * {
+  break-inside: avoid;
+  margin-bottom: 2rem;
+}
+
+/* Hover effects */
+.hover-lift {
+  transition: transform var(--animation-normal) ease, box-shadow var(--animation-normal) ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-medium);
+}
+
+.hover-scale {
+  transition: transform var(--animation-normal) ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-glow {
+  transition: box-shadow var(--animation-normal) ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(25, 118, 210, 0.3);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-color);
+}
+
+/* Reading progress bar */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(25, 118, 210, 0.2);
+  z-index: 1000;
+}
+
+.reading-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  width: 0%;
+  transition: width 0.1s ease;
+}
+
+/* Back to top button */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(0);
+  transition: all var(--animation-normal) ease;
+  z-index: 1000;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.back-to-top:hover {
+  background: var(--secondary-color);
+  transform: scale(1.1);
+}
+
+/* Parallax effects */
+.parallax {
+  transform: translateZ(0);
+  transition: transform 0.1s ease-out;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .layout-grid.cols-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .layout-grid.cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .layout-masonry {
+    column-count: 2;
+  }
+  
+  .layout-carousel > * {
+    flex: 0 0 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .layout-grid.cols-2,
+  .layout-grid.cols-3,
+  .layout-grid.cols-4 {
+    grid-template-columns: 1fr;
+  }
+  
+  .layout-masonry {
+    column-count: 1;
+  }
+  
+  .layout-carousel > * {
+    flex: 0 0 200px;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: var(--dark-primary);
+    --background-color: var(--dark-background);
+    --text-color: var(--dark-text);
+  }
+}
+
+/* Print styles */
+@media print {
+  .reading-progress,
+  .back-to-top,
+  .animate-fade,
+  .animate-slide,
+  .animate-zoom {
+    display: none !important;
+  }
+}
